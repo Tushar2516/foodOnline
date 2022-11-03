@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
 ]
+AUTH_USER_MODEL = 'accounts.User'
+# ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,6 +86,8 @@ DATABASES = {
         'HOST': config('DB_HOST'),
     }
 }
+
+# Telling Django that I am not using default User model
 
 
 # Password validation
