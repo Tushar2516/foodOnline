@@ -28,20 +28,20 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-def create_superuser(self, first_name, last_name, username, email, password=None ):
-    user = self.create_user(
-        email = self.normalize_email(email),
-        username = username,
-        password = password,
-        first_name = first_name,
-        last_name = last_name,
-    )
-    user.is_admin = True
-    user.is_active = True
-    user.is_staff = True
-    user.is_superadmin = True
-    user.save(using=self._db)
-    return user
+    def create_superuser(self, first_name, last_name, username, email, password=None ):
+        user = self.create_user(
+            email = self.normalize_email(email),
+            username = username,
+            password = password,
+            first_name = first_name,
+            last_name = last_name,
+        )
+        user.is_admin = True
+        user.is_active = True
+        user.is_staff = True
+        user.is_superadmin = True
+        user.save(using=self._db)
+        return user
 
 
 class User(AbstractBaseUser):
@@ -54,11 +54,11 @@ class User(AbstractBaseUser):
         (CUSTOMER, 'Customer'),
     )
     
-    first_name = models.CharField(max_length = 50),
-    last_name = models.CharField(max_length = 50),
-    username = None,
-    email = models.EmailField(max_length = 50, unique=True),
-    phone_number = models.CharField(max_length = 12, blank=True),
+    first_name = models.CharField(max_length = 50)
+    last_name = models.CharField(max_length = 50)
+    username = models.CharField(max_length = 50, unique=True)
+    email = models.EmailField(max_length = 50, unique=True)
+    phone_number = models.CharField(max_length = 12, blank=True)
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICE, blank=True, null=True)
     
     # Required fields
@@ -88,5 +88,23 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
     
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE,blank=True, null=True)
+    profile_picture = models.ImageField(upload_to = 'users/profile_pictures', blank=True, null=True)
+    cover_photo = models.ImageField(upload_to = 'users/covor_photo', blank=True, null=True)
+    address_line_1 = models.CharField(max_length=50, blank=True,null=True)
+    address_line_2 = models.CharField(max_length=50, blank=True,null=True)
+    country = models.CharField(max_length=20, blank=True,null=True)
+    province = models.CharField(max_length=50, blank=True,null=True)
+    city = models.CharField(max_length=50, blank=True,null=True)
+    pin_code = models.CharField(max_length=6, blank=True,null=True)
+    latitude = models.CharField(max_length=20, blank=True,null=True)
+    longitude = models.CharField(max_length=50, blank=True,null=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now_add=True)
     
-    
+    def __str__(self):
+        return self.user.email
+ 
+     
