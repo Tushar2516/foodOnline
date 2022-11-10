@@ -13,5 +13,5 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = ()
     
     
-
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(UserProfile)
