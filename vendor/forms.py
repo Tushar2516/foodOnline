@@ -3,7 +3,7 @@ from vendor.models import Vendor
 
 
 
-
+#  Vendor Form provide by Django.
 class VendorForm(forms.ModelForm):
     class Meta:
         model = Vendor

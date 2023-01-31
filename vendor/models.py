@@ -2,7 +2,7 @@ from django.db import models
 from accounts.models import User, UserProfile
 # Create your models here.
 
-
+# Vendor model....
 class Vendor(models.Model):
     user = models.OneToOneField(User, related_name='user',on_delete=models.CASCADE)
     user_profile = models.OneToOneField(UserProfile, related_name='userprofile',on_delete=models.CASCADE)

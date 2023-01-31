@@ -2,6 +2,7 @@ from django import forms
 from .models import *
 
 
+#  User form data Provide by Django
 class UserForm(forms.ModelForm):
     #  Customer field for confirm password
     password = forms.CharField(widget=forms.PasswordInput())

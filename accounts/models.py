@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 
+#  UserManager for Methods..
 class UserManager(BaseUserManager):
     # This Class Only contains Methods not fields
     def create_user(self, first_name, last_name, username, email, password=None):
@@ -43,7 +44,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
+#  Custome User Model
 class User(AbstractBaseUser):
     # This class contains DB fields
     VENDOR = 1
@@ -95,7 +96,8 @@ class User(AbstractBaseUser):
             user_role = 'Customer'
         return user_role
     
-
+    
+#  User Profile model  connect with Django user modal
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,blank=True, null=True)
     profile_picture = models.ImageField(upload_to = 'users/profile_pictures', blank=True, null=True)
