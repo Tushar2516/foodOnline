@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from accounts.utils import *
 
 from vendor.forms import VendorForm
+from vendor.models import Vendor
 from .forms import *
 from django.contrib import messages, auth
 from .models import *

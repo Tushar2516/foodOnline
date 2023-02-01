@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+Hi {{user.first_name}},
+
+{% if is_approved %}
+'Congratulations! Your Restaurant Has Been Approved By Our Admin Team'
+{% else %}
+'Sorry You are not eligible for our website. for more details contact us on this email address: sboy92615@gmail.com'
+{% endif %}
+ 
+{% endautoescape %}  
