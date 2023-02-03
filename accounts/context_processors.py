@@ -7,5 +7,5 @@ def get_vendor(request):
     try:
         vendor = Vendor.objects.get(user=request.user)
     except:
-        vendor : None
+        vendor = None
     return dict(vendor = vendor)

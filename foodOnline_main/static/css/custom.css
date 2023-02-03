@@ -14,8 +14,8 @@
     z-index: 99;
 }
 
-.btn.btn-info{
-    padding: 2px 1.75em;
+.btn{
+    padding: 6px 1.7em;
     font-size: 12px;
     cursor: pointer;
 }
