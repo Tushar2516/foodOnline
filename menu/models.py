@@ -17,6 +17,9 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'category'
         verbose_name_plural = 'categoies'
+        
+    def claen(self):
+        self.category_name = self.category_name.capitalize()
     
     # String Representation:
     def __str__(self):

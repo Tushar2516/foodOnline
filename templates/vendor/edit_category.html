@@ -24,9 +24,9 @@
                                 <hr>
                                 <button class='btn btn-secondary' onclick="history.back()"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back</button>
                                 <br><br>
-                                <h6><b>Add New Category </b></h6>
+                                <h6><b>Edit Category </b></h6>
                                 
-                                <form action="{% url 'add_category' %}" method='POST'>
+                                <form action="{% url 'edit_category' category.id %}" method='POST'>
                                     {% csrf_token %}
                                     {% comment %} {{form}} {% endcomment %}
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -51,7 +51,7 @@
                                         {% endif %}
                                     {% endfor %}
 
-                                    <button type='submit' class='btn btn-info' style='margin-left: 15px;'><i class="fa fa-check" aria-hidden="true"></i> &nbsp; Create Category </button>
+                                    <button type='submit' class='btn btn-info' style='margin-left: 15px;'><i class="fa fa-check" aria-hidden="true"></i> &nbsp; Update Category </button>
                                 </form>
                             
                         </div>

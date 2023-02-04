@@ -85,7 +85,7 @@ def registerVendor(request):
     elif request.method == 'POST':
     #   Store the data and create the user
         form = UserForm(request.POST)  # Common Field taken from User Form
-        v_form = VendorForm(request.POST, request.FILES)
+        v_form = VendorForm(request.POST, request.FILES)  # When we take Images Need to write 'request.FILES'
         if form.is_valid() and v_form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']

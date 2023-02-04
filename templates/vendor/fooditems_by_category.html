@@ -23,7 +23,7 @@
 									<!-- My Restaurants Form Start -->
                                 <hr>
                                 <button class='btn btn-secondary' onclick="history.back()"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back</button>
-                                <br>
+                                <br><br>
                                 <h6>Category : <span class='text-uppercase text-success'><b>{{category}}</b></span> </h6>
                                 {% comment %} <a href='#' class='btn btn-info float-right m-1'> Add Category </a> {% endcomment %}
                                 
@@ -41,10 +41,17 @@
                                             <small class='text-muted '>{{food.description}}</small>
                                             </a>
                                         </td>
+                                        <td>
+                                            {% if food.is_available %}
+                                            <span class="bagde badge-success"> Available </span>
+                                            {% else %}
+                                            <span class="bagde badge-danger"> Not Available </span>
+                                            {% endif%}
+                                        </td>
                                         {% comment %} Edit Delete Button {% endcomment %}
                                         <td>
-                                            <a href='#'><i class="fa fa-pencil" aria-hidden="true" style="font-size: 23px;"></i></a> &nbsp;&nbsp;&nbsp;
-                                            <a href='#'><i class="fa fa-trash text-danger" aria-hidden="true" style="font-size: 23px;"></i></a>
+                                            <a href="{% url 'edit_food' food.id %}" style="color:unset"><i class="fa fa-pencil" aria-hidden="true" style="font-size: 23px;"></i></a> &nbsp;&nbsp;&nbsp;
+                                            <a href="{% url 'delete_food' food.id %}" onclick="return confirm('Are You Sure You Want To Delete This Food?')"><i class="fa fa-trash text-danger" aria-hidden="true" style="font-size: 23px;"></i></a>
                                         </td>
                                         
                                       </tr>
