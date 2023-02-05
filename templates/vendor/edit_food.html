@@ -79,6 +79,7 @@
                                     {% endfor %}
 
                                     <button type='submit' class='btn btn-info' style='margin-left: 15px;'><i class="fa fa-check" aria-hidden="true"></i> &nbsp; Update Food </button>
+                                    <a href="{% url 'delete_food' food.id %}" class='btn btn-danger' onclick="return confirm('Are You Sure You Want To Delete This Food Item?')"><i class="fa fa-trash" aria-hidden="true"></i> &nbsp; Delete Category</a>
                                 </form>
                             
                         </div>
