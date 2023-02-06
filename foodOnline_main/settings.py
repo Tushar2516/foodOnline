@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'vendor.apps.VendorConfig',
     'menu.apps.MenuConfig',
+    'marketplace.apps.MarketplaceConfig',
 ]
 AUTH_USER_MODEL = 'accounts.User'
 # ACCOUNT_USER_MODEL_USERNAME_FIELD = None

@@ -9,6 +9,7 @@ from django.contrib import messages, auth
 from .models import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
+from django.template.defaultfilters import slugify
 
 #  Cusotme Decorators for restrict vendor to access customer acc
 #  Cusotme Decorators for restrict customer to access vendor acc
@@ -33,7 +34,7 @@ def check_role_customer(user):
 def registerUser(request):
     if request.user.is_authenticated:
         messages.warning(request,'You are already logged in')
-        return redirect('dashboard')
+        return redirect('myAccount')
     elif request.method == 'POST':
         
         form = UserForm(request.POST)
@@ -81,7 +82,7 @@ def registerUser(request):
 def registerVendor(request):
     if request.user.is_authenticated:
         messages.warning(request,'You are already logged in')
-        return redirect('dashboard')
+        return redirect('myAccount')
     elif request.method == 'POST':
     #   Store the data and create the user
         form = UserForm(request.POST)  # Common Field taken from User Form
@@ -97,6 +98,8 @@ def registerVendor(request):
             user.save()
             vendor = v_form.save(commit=False)
             vendor.user = user
+            vendor_name = v_form.cleaned_data['vendor_name']
+            vendor.vendor_slug = slugify(vendor_name)+'-'+str(user.id)
             user_profile = UserProfile.objects.get(user=user)
             vendor.user_profile = user_profile
             vendor.save()
