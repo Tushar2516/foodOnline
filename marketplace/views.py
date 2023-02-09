@@ -1,5 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
+from marketplace.context_processors import get_cart_counter
 from marketplace.models import Cart
 from menu.models import Category, FoodItem
 from vendor.models import Vendor
@@ -27,9 +28,14 @@ def vendor_detail(request, vendor_slug):
         )   
     )    
     #  Pass Vendor Info Dict* To Vendor Details Page...
+    if request.user.is_authenticated:
+        cart_items = Cart.objects.filter(user=request.user)
+    else:
+        cart_items = None
     context = {
-        'vendor':vendor,
-        'categories' :categories
+        'vendor': vendor,
+        'categories' : categories,
+        'cart_items' : cart_items
     }
     return render(request, 'marketplace/vendor_detail.html', context)
 
@@ -46,7 +52,7 @@ def add_to_cart(request, food_id):
                     #  Increase the quantity by + 1
                     checkCart.quantity += 1
                     checkCart.save()
-                    return JsonResponse({'status':'Success', 'message':'Increase the cart quantity.'})
+                    return JsonResponse({'status':'Success', 'message':'Increase the cart quantity.', 'cart_counter': get_cart_counter(request)})
                 except:
                     checkCart = Cart.objects.create(user=request.user, fooditem=fooditem, quantity=1)
                     return JsonResponse({'status':'Success', 'message':'Added the food to the cart. '})
