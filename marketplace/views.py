@@ -121,4 +121,17 @@ def delete_cart(request, cart_id):
         else:
             return JsonResponse({'status':'Failed', 'message':'Invalid Request!'})
         
+    
+# Function For Search
+
+def search(request):
+    rest_name = request.GET['rest_name']
+    address = request.GET['address']
+    latitude = request.GET['lat']
+    longitude = request.GET['lng']
+    radius = request.GET['radius']
+    print(rest_name, address, latitude, longitude, radius)
+    return render(request, 'marketplace/listings.html') 
+
+        
 

@@ -166,4 +166,5 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'FoodOnline Marketplace. <sboy92615@gmail.com>'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# TP_KEY = ''
+# Google Map API Key
+TP_KEY = config('TP_KEY')
